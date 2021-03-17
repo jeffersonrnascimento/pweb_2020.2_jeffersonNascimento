@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta codigoSemana2="1519782685">
+    <link rel="stylesheet" href="style/style.css">
+    <title>PWeb - by JeffersonNascimento</title>
+</head>
+
+<body>
+    <ul>
+        <li><a href="index.html">Início</a></li><hr>
+        <li><a href="noticias.html">Canais de Notícias</a></li><hr>
+        <li><a class="active" href="adicionarPessoa.html">Adicionar Pessoa</a></li>
+        <li><a href="listarPessoas.html">Listar Pessoas</a></li><hr>
+        <li><a href="sobre.html">Sobre o Site</a></li>
+        <li><a href="mailto:jefferson.nascimento@alunos.ufersa.edu.br">Mande um e-Mail</a></li>
+
+    </ul>
+
+    <div style="margin-left:25%;padding:1px 16px;height:1000px;">
+
+        <h1>Formulário para cadastro de pessoas:</h1>
+
+        <form method="get" action="adicionadaComSucesso.html">
+            <label for="nomeCompleto">Nome Completo *:</label>
+            <input type="text" name="nomeCompleto" value="Seu nome completo"><br><br>
+            <label for="dataNascimento">Data de Nascimento *:</label>
+            <input type="date" name="dataNascimento" value="dd/mm/aaaa"><br><br>
+            <label for="email">e-Mail *:</label>
+            <input type="text" name="email" value="nome@dominio.com"><br><br>
+
+            <label for="sexo">Sexo *:</label><br><br>
+            <input type="radio" name="sexo" value="masculino">
+            <label for="Masculino">Masculino</label><br><br>
+            <input type="radio" name="sexo" value="feminino">
+            <label for="feminino">Feminino</label><br><br>
+            <input type="radio" name="sexo" value="neutro">
+            <label for="indefinido">Não informar</label><br><br>
+
+            <input type="reset" class="button" value="Limpar">
+            <input type="submit" class="button" value="Cadastrar!">
+        </form>
+
+        <p>* Campo Obrigatório</p>
+
+</body>
+
+</html>
