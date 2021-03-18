@@ -27,18 +27,18 @@
 
         <form method="get" action="adicionadaComSucesso.html">
             <label for="nomeCompleto">Nome Completo *:</label>
-            <input type="text" name="nomeCompleto" value="Seu nome completo"><br><br>
+            <input type="text" name="nomeCompleto" value="Seu nome completo" required><br><br>
             <label for="dataNascimento">Data de Nascimento *:</label>
-            <input type="date" name="dataNascimento" value="dd/mm/aaaa"><br><br>
+            <input type="date" name="dataNascimento" value="dd/mm/aaaa" required><br><br>
             <label for="email">e-Mail *:</label>
-            <input type="text" name="email" value="nome@dominio.com"><br><br>
+            <input type="text" name="email" value="nome@dominio.com" required><br><br>
 
             <label for="sexo">Sexo *:</label><br><br>
-            <input type="radio" name="sexo" value="masculino">
+            <input type="radio" name="sexo" value="masculino" required>
             <label for="Masculino">Masculino</label><br><br>
-            <input type="radio" name="sexo" value="feminino">
+            <input type="radio" name="sexo" value="feminino" required>
             <label for="feminino">Feminino</label><br><br>
-            <input type="radio" name="sexo" value="neutro">
+            <input type="radio" name="sexo" value="neutro" required>
             <label for="indefinido">Não informar</label><br><br>
 
             <input type="reset" class="button" name="btnLimpar" value="Limpar">
