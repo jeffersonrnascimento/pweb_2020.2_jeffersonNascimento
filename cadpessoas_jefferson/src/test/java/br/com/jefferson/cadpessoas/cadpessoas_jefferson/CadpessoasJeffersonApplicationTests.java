@@ -1,10 +1,10 @@
-package br.com.jeffersonrnascimento.cadpessoas;
+package br.com.jefferson.cadpessoas.cadpessoas_jefferson;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CadpessoasJeffersonrnascimentoApplicationTests {
+class CadpessoasJeffersonApplicationTests {
 
 	@Test
 	void contextLoads() {

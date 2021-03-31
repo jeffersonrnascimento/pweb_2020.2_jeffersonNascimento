@@ -1,13 +1,13 @@
-package br.com.jeffersonrnascimento.cadpessoas;
+package br.com.jefferson.cadpessoas.cadpessoas_jefferson;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CadpessoasJeffersonrnascimentoApplication {
+public class CadpessoasJeffersonApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CadpessoasJeffersonrnascimentoApplication.class, args);
+		SpringApplication.run(CadpessoasJeffersonApplication.class, args);
 	}
 
 }
