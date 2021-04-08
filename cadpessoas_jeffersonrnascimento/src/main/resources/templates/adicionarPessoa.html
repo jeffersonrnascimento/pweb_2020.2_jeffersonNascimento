@@ -2,19 +2,20 @@
 <html lang="pt_br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta codigoSemana3="1519782685">
-    <link rel="stylesheet" href="/css/style.css">
-    <title>PWeb - by JeffersonNascimento</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta codigoSemana3="1519782685">
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+<title>Adicionar Pessoa - Com Spring</title>
 </head>
 
 <body>
-    <ul>
+	<ul>
 		<li><a href="/">Início</a></li>
 		<hr />
-		<li><a class="active" href="/adicionarPessoa">Adicionar Pessoa</a></li>
+		<li><a class="active" href="/adicionarPessoa">Adicionar
+				Pessoa</a></li>
 		<li><a href="/listarPessoas">Listar Pessoas</a></li>
 		<hr />
 		<li><a href="/public/noticias.html">Notícias</a></li>
@@ -22,31 +23,46 @@
 		<li><a href="/public/contato.html">Contato</a></li>
 	</ul>
 
-    <div style="margin-left:25%;padding:1px 16px;height:1000px;">
+	<div style="margin-left: 25%; padding: 1px 16px; height: 1000px;">
 
-        <h1>Formulário para cadastro de pessoas:</h1>
+		<h1>Adicionar Pessoa:</h1>
 
-        <form method="get" action="adicionadaComSucesso.html">
-            <label for="nomeCompleto">Nome Completo *:</label>
-            <input type="text" name="nomeCompleto" placeholder="Seu nome completo" required><br><br>
-            <label for="dataNascimento">Data de Nascimento *:</label>
-            <input type="date" name="dataNascimento" placeholder="dd/mm/aaaa" required><br><br>
-            <label for="email">e-Mail *:</label>
-            <input type="text" name="email" placeholder="nome@dominio.com" required><br><br>
+		<form method="POST" th:object="${pessoa}"
+			th:action="@{/adicionarPessoa}">
 
-            <label for="sexo">Sexo *:</label><br><br>
-            <input type="radio" name="sexo" value="masculino" required>
-            <label for="Masculino">Masculino</label><br><br>
-            <input type="radio" name="sexo" value="feminino" required>
-            <label for="feminino">Feminino</label><br><br>
-            <input type="radio" name="sexo" value="neutro" required>
-            <label for="indefinido">Não informar</label><br><br>
+			<p>
+				Nome Completo *: <input type="text" placeholder="Seu nome completo"
+					th:field="*{nome}" required />
+			</p>
+			<p>
+				Data de Nascimento *: <input type="date" placeholder="dd/mm/aaaa"
+					th:field="*{dataNascimento}" required />
+			</p>
+			<p>
+				e-Mail *: <input type="text" placeholder="nome@dominio.com"
+					th:field="*{email}" required />
+			</p>
 
-            <input type="reset" class="button" name="btnLimpar" value="Limpar">
-            <input type="submit" class="button" name="btnEnviar" value="Cadastrar!">
-        </form>
+			<p>Gênero *:</p>
+			<p>
+				<input type="radio" name="genero" value="Masculino"
+					th:field="*{genero}" required />Masculino
+			</p>
+			<p>
+				<input type="radio" name="genero" value="Feminino"
+					th:field="*{genero}" required />Feminino
+			</p>
+			<p>
+				<input type="radio" name="genero" value="Não Informado"
+					th:field="*{genero}" required />Não informar
+			</p>
 
-        <p>* Campo Obrigatório</p>
+			<input type="reset" class="button button12px" value="Limpar">
+			<input type="submit" class="button button12px" value="Cadastrar!">
+		</form>
+
+		<p>* Campo Obrigatório</p>
+	</div>
 
 </body>
 
