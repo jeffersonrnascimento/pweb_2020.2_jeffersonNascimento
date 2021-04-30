@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta codigoSemana3="1653197272">
+<link th:href="@{/css/style.css}" rel="stylesheet"/>
+<title>Listar Produtos</title>
+</head>
+
+<body>
+	<ul>
+		<li><a href="/">Início</a></li>
+		<hr />
+		<li><a href="/adicionarCliente">Adicionar Cliente</a></li>
+		<li><a href="/listarClientes">Listar Clientes</a></li>
+		<li><a href="/adicionarProduto">Adicionar Produto</a></li>
+		<li><a class="active" href="/listarProdutos">Listar Produtos</a></li>
+		<hr />
+		<li><a href="/public/noticias.html">Notícias</a></li>
+		<li><a href="/public/sobre.html">Sobre</a></li>
+		<li><a href="/public/contato.html">Contato</a></li>
+	</ul>
+
+	<div style="margin-left: 25%; padding: 1px 16px; height: 1000px;">
+
+		<center><h1>Lista de Produtos</h1></center>
+
+		<table>
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nome do Produto</th>
+					<th>Marca</th>
+					<th>Preço</th>
+					<th>Altura</th>
+					<th>Largura</th>
+					<th>Profundidade</th>
+					<th>Peso</th>
+					<th>Editar</th>
+					<th>Remover</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="produto: ${produtos}">
+					<td th:text="${produto.id}"></td>
+					<td th:text="${produto.nomeProduto}"></td>
+					<td th:text="${produto.marca}"></td>
+					<td th:text="${produto.preco}"></td>
+					<td th:text="${produto.altura}"></td>
+					<td th:text="${produto.largura}"></td>
+					<td th:text="${produto.profundidade}"></td>
+					<td th:text="${produto.peso}"></td>
+					<td>
+						<a th:href="@{/editar/{id}(id=${produto.id})}">Editar</a>
+					</td>
+					<td>
+						<a th:href="@{/remover/{id}(id=${produto.id})}">Remover</a>
+					</td>
+				</tr>
+			<tbody>
+		</table>
+</body>
+</html>

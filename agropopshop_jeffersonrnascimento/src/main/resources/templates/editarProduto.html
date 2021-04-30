@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta codigoSemana3="1653197272">
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+<title>Editar Produto</title>
+</head>
+
+<body>
+	<ul>
+		<li><a href="/">Início</a></li>
+		<hr />
+		<li><a href="/adicionarCliente">Adicionar Cliente</a></li>
+		<li><a href="/listarClientes">Listar Clientes</a></li>
+		<li><a href="/adicionarProduto">Adicionar Produto</a></li>
+		<li><a href="/listarProdutos">Listar Produtos</a></li>
+		<hr />
+		<li><a href="/public/noticias.html">Notícias</a></li>
+		<li><a href="/public/sobre.html">Sobre</a></li>
+		<li><a href="/public/contato.html">Contato</a></li>
+	</ul>
+
+	<div style="margin-left: 25%; padding: 1px 16px; height: 1000px;">
+
+		<h1>Editar Produto:</h1>
+
+		<form action="#" th:action="@{/editar/{id}(id=${produto.id})}"
+			th:object="${produto}" th:method="POST">
+
+			<p>
+				Nome do Produto *: <input type="text" placeholder="Nome do produto"
+					th:field="*{nomeProduto}" required />
+			</p>
+			<p>
+				Marca *: <input type="text" placeholder="Marca do produto"
+					th:field="*{marca}" required />
+			</p>
+			<p>
+				Preço *: <input type="text" placeholder="R$ 0.00"
+					th:field="*{preco}" required />
+			</p>
+			<p>
+				Altura *: <input type="text" placeholder="Ex.: 1.60 cm"
+					th:field="*{altura}" required />
+			</p>
+			<p>
+				Largura *: <input type="text" placeholder="Ex.: 0.30 cm"
+					th:field="*{largura}" required />
+			</p>
+			<p>
+				Profundidade *: <input type="text" placeholder="Ex.:0.30 cm"
+					th:field="*{profundidade}" required />
+			</p>
+			<p>
+				Peso *: <input type="text" placeholder="Ex.: 10 kl"
+					th:field="*{peso}" required />
+			</p>
+			
+
+			<input type="reset" class="button button12px" value="Limpar">
+			<input type="submit" class="button button12px" value="Cadastrar!">
+		</form>
+
+		<p>* Campo Obrigatório</p>
+	</div>
+
+</body>
+
+</html>
