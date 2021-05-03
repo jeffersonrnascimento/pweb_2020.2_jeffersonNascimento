@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: br.com.jeffersonrnascimento.cadpessoas.CadpessoasJeffersonrnascimentoApplicationTests
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.985 s - in br.com.jeffersonrnascimento.cadpessoas.CadpessoasJeffersonrnascimentoApplicationTests
