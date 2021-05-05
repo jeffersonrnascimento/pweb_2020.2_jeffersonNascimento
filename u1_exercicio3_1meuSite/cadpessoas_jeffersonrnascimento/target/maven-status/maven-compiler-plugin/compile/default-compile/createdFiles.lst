@@ -1,4 +1,0 @@
-br\com\jeffersonrnascimento\cadpessoas\CadpessoasJeffersonrnascimentoApplication.class
-br\com\jeffersonrnascimento\cadpessoas\model\Pessoa.class
-br\com\jeffersonrnascimento\cadpessoas\repositories\PessoaRepository.class
-br\com\jeffersonrnascimento\cadpessoas\controllers\PessoaController.class
