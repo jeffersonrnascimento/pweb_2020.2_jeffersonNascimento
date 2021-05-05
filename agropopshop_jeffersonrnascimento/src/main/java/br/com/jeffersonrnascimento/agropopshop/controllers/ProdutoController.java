@@ -7,13 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 import br.com.jeffersonrnascimento.agropopshop.model.Produto;
 import br.com.jeffersonrnascimento.agropopshop.repositories.ProdutoRepository;
 
 @Controller
-@RequestMapping("/")
 public class ProdutoController {
 	
 	@Autowired
@@ -23,18 +22,17 @@ public class ProdutoController {
 		this.produtoRepo = produtoRepo;
 	}
 	
-	
 	@GetMapping("/listarProdutos")
 	public ModelAndView listarProdutos() {
 		List<Produto> lista = produtoRepo.findAll();
-		ModelAndView mav = new ModelAndView("listarProdutos");
-		mav.addObject("produtos", lista);
-		return mav;
+		ModelAndView ModelAndView = new ModelAndView("/listarProdutos");
+		ModelAndView.addObject("produtos", lista);
+		return ModelAndView;
 	}
 	
 	@GetMapping("/adicionarProduto")
 	public ModelAndView adicionarProduto() {
-		ModelAndView mav = new ModelAndView("adicionarProduto");
+		ModelAndView mav = new ModelAndView("/adicionarProduto");
 		mav.addObject(new Produto());
 		return mav;
 	}
@@ -47,10 +45,10 @@ public class ProdutoController {
 	
 	@GetMapping("/removerProduto/{id}")
 	public ModelAndView removerProduto(@PathVariable("id") long id){
-		Produto pRemover = produtoRepo.findById(id)
+		Produto aRemover = produtoRepo.findById(id)
 		.orElseThrow(() -> new IllegalArgumentException("ID inválido:" + id));
 		
-		produtoRepo.delete(pRemover);
+		produtoRepo.delete(aRemover);
 		return new ModelAndView("redirect:/listarProdutos");
 	}
 	

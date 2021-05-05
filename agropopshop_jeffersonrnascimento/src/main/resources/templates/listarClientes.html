@@ -6,28 +6,39 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta codigoSemana3="1653197272">
-<link th:href="@{/css/style.css}" rel="stylesheet"/>
+<link th:href="@{/css/style.css}" rel="stylesheet" />
 <title>Listar Clientes</title>
 </head>
 
 <body>
-	<ul>
-		<li><a href="/">Início</a></li>
-		<hr />
-		<li><a href="/adicionarCliente">Adicionar Cliente</a></li>
-		<li><a class="active" href="/listarClientes">Listar Clientes</a></li>
-		<li><a href="/adicionarProduto">Adicionar Produto</a></li>
-		<li><a href="/listarProdutos">Listar Produtos</a></li>
-		<hr />
-		<li><a href="/public/noticias.html">Notícias</a></li>
-		<li><a href="/public/sobre.html">Sobre</a></li>
-		<li><a href="/public/contato.html">Contato</a></li>
-	</ul>
+	<div class="topnav" id="myTopnav">
+		<a href="/" class="active">Início</a>
+		<div class="dropdown">
+			<button class="dropbtn"> Cliente <i class="fa fa-caret-down"></i></button>
+			<div class="dropdown-content">
+				<a href="/adicionarCliente">Adicionar Cliente</a>
+				<a href="/listarClientes">Listar Clientes</a>
+			</div>
+		</div>
+		<div class="dropdown">
+			<button class="dropbtn"> Produto <i class="fa fa-caret-down"></i></button>
+			<div class="dropdown-content">
+				<a href="/adicionarProduto">Adicionar Produto</a>
+				<a  href="/listarProdutos">Listar Produtos</a>
+			</div>
+		</div>
+		<a  href="/public/sobre.html">Sobre</a>
+		<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+	</div>
 
-	<div style="margin-left: 25%; padding: 1px 16px; height: 1000px;">
+	<div class="container">
 
-		<center><h1>Lista de Clientes</h1></center>
+		<center>
+			<h1>Lista de Clientes</h1>
+		</center>
+	</div>
 
+	<div style="overflow-x:auto;">
 		<table>
 			<thead>
 				<tr>
@@ -50,9 +61,8 @@
 				<tr th:each="cliente: ${clientes}">
 					<td th:text="${cliente.id}"></td>
 					<td th:text="${cliente.nome}"></td>
-					<td>
-						<a th:href="'mailto:'+${cliente.email}"th:text="${cliente.email}"></a>
-					</td>
+					<td><a th:href="'mailto:'+${cliente.email}"
+						th:text="${cliente.email}"></a></td>
 					<td th:text="${cliente.genero}"></td>
 					<td th:text="${cliente.telefone}"></td>
 					<td th:text="${cliente.uf}"></td>
@@ -61,14 +71,23 @@
 					<td th:text="${cliente.bairro}"></td>
 					<td th:text="${cliente.rua}"></td>
 					<td th:text="${cliente.numero}"></td>
-					<td>
-						<a th:href="@{/editar/{id}(id=${cliente.id})}">Editar</a>
+					<td><a th:href="@{/editar/{id}(id=${cliente.id})}">Editar</a>
 					</td>
-					<td>
-						<a th:href="@{/remover/{id}(id=${cliente.id})}">Remover</a>
+					<td><a th:href="@{/remover/{id}(id=${cliente.id})}">Remover</a>
 					</td>
 				</tr>
 			<tbody>
 		</table>
+	</div>
+	<script>
+	function myFunction() {
+  		var x = document.getElementById("myTopnav");
+  		if (x.className === "topnav") {
+    		x.className += " responsive";
+  		} else {
+    		x.className = "topnav";
+  		}
+	}
+	</script>
 </body>
 </html>
