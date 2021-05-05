@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: Jefferson Nascimento
+Build-Jdk: 15.0.2
+Implementation-Title: cadpessoas_jeffersonrnascimento
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: br.com.jeffersonrnascimento.cadpessoas
+Implementation-URL: https://spring.io/projects/spring-boot/cadpessoas_je
+ ffersonrnascimento
+Created-By: Maven Integration for Eclipse
+
