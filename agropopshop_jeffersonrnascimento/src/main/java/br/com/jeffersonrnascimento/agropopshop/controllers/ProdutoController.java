@@ -23,6 +23,11 @@ public class ProdutoController {
 	ProdutoController(ProdutoRepository produtoRepo) {
 		this.produtoRepo = produtoRepo;
 	}
+	
+	@Autowired
+	public ProdutoRepository getProdutoRepo() {
+		return produtoRepo;
+	}
 
 	@GetMapping("/{listarProdutos}")
 	public ModelAndView listarProdutos() {
