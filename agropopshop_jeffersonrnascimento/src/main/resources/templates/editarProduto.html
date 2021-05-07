@@ -11,26 +11,36 @@
 </head>
 
 <body>
-	<ul>
-		<li><a href="/">Início</a></li>
-		<hr />
-		<li><a href="/adicionarCliente">Adicionar Cliente</a></li>
-		<li><a href="/listarClientes">Listar Clientes</a></li>
-		<li><a href="/adicionarProduto">Adicionar Produto</a></li>
-		<li><a href="/listarProdutos">Listar Produtos</a></li>
-		<hr />
-		<li><a href="/public/noticias.html">Notícias</a></li>
-		<li><a href="/public/sobre.html">Sobre</a></li>
-		<li><a href="/public/contato.html">Contato</a></li>
-	</ul>
+	<div class="topnav" id="myTopnav">
+		<a href="/" class="active">Início</a>
+		<div class="dropdown">
+			<button class="dropbtn"> Cliente <i class="active"></i></button>
+			<div class="dropdown-content">
+				<a href="/adicionarCliente">Adicionar Cliente</a>
+				<a href="/listarClientes">Listar Clientes</a>
+			</div>
+		</div>
+		<div class="dropdown">
+			<button class="dropbtn">Produto</button>
+			<div class="dropdown-content">
+				<a href="/adicionarProduto">Adicionar Produto</a>
+				<a href="/listarProdutos">Listar Produtos</a>
+			</div>
+		</div>
+		<a href="/public/sobre.html">Sobre</a>
+		<a href="javascript:void(0);" style="font-size: 15px;" class="icon" onclick="myFunction()">&#9776;</a>
+	</div>
 
-	<div style="margin-left: 25%; padding: 1px 16px; height: 1000px;">
+		<div>
+			<center>
+			<h1>Editar Produto</h1>
+			</center>
+		</div>
 
-		<h1>Editar Produto:</h1>
-
-		<form action="#" th:action="@{/editar/{id}(id=${produto.id})}"
+		<form action="#" th:action="@{/editarProduto/{id}(id=${produto.id})}"
 			th:object="${produto}" th:method="POST">
-
+			
+			<div class="box">
 			<p>
 				Nome do Produto *: <input type="text" placeholder="Nome do produto"
 					th:field="*{nomeProduto}" required />
@@ -60,9 +70,8 @@
 					th:field="*{peso}" required />
 			</p>
 			
-
-			<input type="reset" class="button button12px" value="Limpar">
-			<input type="submit" class="button button12px" value="Cadastrar!">
+			<input type="reset"  value="Limpar">
+			<input type="submit" value="Cadastrar">
 		</form>
 
 		<p>* Campo Obrigatório</p>

@@ -12,100 +12,105 @@
 
 <body>
 	<div class="topnav" id="myTopnav">
-		<a href="/" class="active">Início</a>
+		<a href="/">Início</a>
 		<div class="dropdown">
-			<button class="dropbtn"> Cliente <i class="active"></i></button>
+			<button class="dropbtn"> Cliente </button>
 			<div class="dropdown-content">
-				<a href="/adicionarCliente">Adicionar Cliente</a>
+				<a class="active" href="/adicionarCliente">Adicionar Cliente</a>
 				<a href="/listarClientes">Listar Clientes</a>
 			</div>
 		</div>
 		<div class="dropdown">
-			<button class="dropbtn"> Produto <i class="fa fa-caret-down"></i></button>
+			<button class="dropbtn">Produto</button>
 			<div class="dropdown-content">
 				<a href="/adicionarProduto">Adicionar Produto</a>
-				<a  href="/listarProdutos">Listar Produtos</a>
+				<a href="/listarProdutos">Listar Produtos</a>
 			</div>
 		</div>
-		<a  href="/public/sobre.html">Sobre</a>
-		<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+		<a href="/public/sobre.html">Sobre</a>
+		<a href="javascript:void(0);" style="font-size: 15px;" class="icon" onclick="myFunction()">&#9776;</a>
 	</div>
 
-	<div style="margin-left: 25%; padding: 1px 16px; height: 1000px;">
+	<div>
+		<center>
+			<h1>Cadastar Cliente</h1>
+		</center>
+	</div>
 
-		<h1>Adicionar Cliente:</h1>
+	<form method="POST" th:object="${cliente}" th:action="@{adicionarCliente}">
+		<div class="box">
+			<h3>Dados Pessoais</h3>
+			<label for="fname">Nome Completo</label>
+			<input type="text" placeholder="Seu nome completo" th:field="*{nome}" required />
+			<label for="sexo">Gênero</label>
+			<select th:field="*{genero}" id="genero" name="genero">
+				<option value="Masculino">Masculino</option>
+				<option value="Feminino">Feminino</option>
+				<option value="Não Informar">Não Informar</option>
+			</select>
 
-		<form method="POST" th:object="${cliente}"
-			th:action="@{/adicionarCliente}">
-
-			<p>
-				Nome Completo *: <input type="text" placeholder="Seu nome completo"
-					th:field="*{nome}" required />
-			</p>
-			<p>
-				e-Mail *: <input type="text" placeholder="nome@dominio.com"
-					th:field="*{email}" required />
-			</p>
-
-			<p>Gênero *:</p>
-			<p>
-				<input type="radio" name="genero" value="Masculino"
-					th:field="*{genero}" required />Masculino
-			</p>
-			<p>
-				<input type="radio" name="genero" value="Feminino"
-					th:field="*{genero}" required />Feminino
-			</p>
-			<p>
-				<input type="radio" name="genero" value="Não Informado"
-					th:field="*{genero}" required />Não informar
-			</p>
-			<p>
-				Telefone *: <input type="text" placeholder="(xx) xxxx-xxxx"
-					th:field="*{telefone}" required />
-			</p>
-			<p>
-				UF *: <input type="text" placeholder="Estado"
-					th:field="*{uf}" required />
-			</p>
-			<p>
-				CEP *: <input type="text" placeholder="CEP"
-					th:field="*{cep}" required />
-			</p>
-			<p>
-				Cidade *: <input type="text" placeholder="Cidade"
-					th:field="*{cidade}" required />
-			</p>
-			<p>
-				Bairro *: <input type="text" placeholder="Bairro"
-					th:field="*{bairro}" required />
-			</p>
-			<p>
-				Rua *: <input type="text" placeholder="Rua"
-					th:field="*{rua}" required />
-			</p>
-			<p>
-				Número *: <input type="text" placeholder="Número de residência"
-					th:field="*{numero}" required />
-			</p>
+			<h3>Contato</h3>
+			<label for="email">e-Mail</label>
+			<input type="text" placeholder="nome@dominio.com" th:field="*{email}" required />
+			<label for="telefone">Telefone</label>
+			<input type="text" placeholder="(00) 0000-0000" th:field="*{telefone}" required />
 			
-
-			<input type="reset" class="button button12px" value="Limpar">
-			<input type="submit" class="button button12px" value="Cadastrar!">
-		</form>
-
-		<p>* Campo Obrigatório</p>
+			<h3>Endereço Residencial</h3>
+			<label for="cep">CEP</label>
+			<input type="text" placeholder="CEP" th:field="*{cep}" required />
+			<label for="uf">UF</label>
+			<select th:field="*{uf}" id="uf">
+				<option value="AC">AC</option>
+				<option value="AL">AL</option>
+				<option value="AP">AP</option>
+				<option value="AM">AM</option>
+				<option value="BA">BA</option>
+				<option value="CE">CE</option>
+				<option value="DF">DF</option>
+				<option value="ES">ES</option>
+				<option value="GO">GO</option>
+				<option value="MA">MA</option>
+				<option value="MT">MT</option>
+				<option value="MS">MS</option>
+				<option value="MG">MG</option>
+				<option value="PA">PA</option>
+				<option value="PB">PB</option>
+				<option value="PR">PR</option>
+				<option value="PE">PE</option>
+				<option value="PI">PI</option>
+				<option value="RJ">RJ</option>
+				<option value="RN">RN</option>
+				<option value="RS">RS</option>
+				<option value="RO">RO</option>
+				<option value="RR">RR</option>
+				<option value="SC">SC</option>
+				<option value="SP">SP</option>
+				<option value="SE">SE</option>
+				<option value="TO">TO</option>
+			</select>
+			<label for="cidade">Cidade</label>
+			<input type="text" placeholder="Cidade" th:field="*{cidade}" required />
+			<label for="bairro">Bairro</label>
+			<input type="text" placeholder="Bairro" th:field="*{bairro}" required />
+			<label for="rua">Rua</label>
+			<input type="text" placeholder="Rua" th:field="*{rua}" required />
+			<label for="nResidencial">Nº Residencial</label>
+			<input type="text" placeholder="Número de residência" th:field="*{numero}" required />
+			
+			<input type="reset"  value="Limpar">
+			<input type="submit" value="Cadastrar">
+	</form>
 	</div>
-	
+
 	<script>
-	function myFunction() {
-  		var x = document.getElementById("myTopnav");
-  		if (x.className === "topnav") {
-    		x.className += " responsive";
-  		} else {
-    		x.className = "topnav";
-  		}
-	}
+		function myFunction() {
+			var x = document.getElementById("myTopnav");
+			if (x.className === "topnav") {
+				x.className += " responsive";
+			} else {
+				x.className = "topnav";
+			}
+		}
 	</script>
 
 </body>

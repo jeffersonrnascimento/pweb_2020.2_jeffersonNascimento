@@ -11,23 +11,33 @@
 </head>
 
 <body>
-	<ul>
-		<li><a href="/">Início</a></li>
-		<hr />
-		<li><a href="/adicionarCliente">Adicionar Cliente</a></li>
-		<li><a href="/listarClientes">Listar Clientes</a></li>
-		<li><a href="/adicionarProduto">Adicionar Produto</a></li>
-		<li><a class="active" href="/listarProdutos">Listar Produtos</a></li>
-		<hr />
-		<li><a href="/public/noticias.html">Notícias</a></li>
-		<li><a href="/public/sobre.html">Sobre</a></li>
-		<li><a href="/public/contato.html">Contato</a></li>
-	</ul>
-
-	<div style="margin-left: 25%; padding: 1px 16px; height: 1000px;">
-
-		<center><h1>Lista de Produtos</h1></center>
-
+	<div class="topnav" id="myTopnav">
+		<a href="/" >Início</a>
+		<div class="dropdown">
+			<button class="dropbtn"> Cliente </button>
+			<div class="dropdown-content">
+				<a href="/adicionarCliente">Adicionar Cliente</a>
+				<a href="/listarClientes">Listar Clientes</a>
+			</div>
+		</div>
+		<div class="dropdown">
+			<button class="dropbtn">Produto</button>
+			<div class="dropdown-content">
+				<a href="/adicionarProduto">Adicionar Produto</a>
+				<a class="active" href="/listarProdutos">Listar Produtos</a>
+			</div>
+		</div>
+		<a href="/public/sobre.html">Sobre</a>
+		<a href="javascript:void(0);" style="font-size: 15px;" class="icon" onclick="myFunction()">&#9776;</a>
+	</div>
+		
+		<div>
+			<center>
+			<h1>Lista de Produtos</h1>
+			</center>
+		</div>
+		
+	<div style="overflow-x:auto;">
 		<table>
 			<thead>
 				<tr>
@@ -42,6 +52,7 @@
 					<th>Editar</th>
 					<th>Remover</th>
 				</tr>
+			
 			</thead>
 			<tbody>
 				<tr th:each="produto: ${produtos}">
@@ -54,13 +65,26 @@
 					<td th:text="${produto.profundidade}"></td>
 					<td th:text="${produto.peso}"></td>
 					<td>
-						<a th:href="@{/editar/{id}(id=${produto.id})}">Editar</a>
+						<a th:href="@{/editarProduto/{id}(id=${produto.id})}">Editar</a>
 					</td>
 					<td>
-						<a th:href="@{/remover/{id}(id=${produto.id})}">Remover</a>
+						<a th:href="@{/removerProduto/{id}(id=${produto.id})}">Remover</a>
 					</td>
 				</tr>
 			<tbody>
+			
 		</table>
+	</div>
+	
+	<script>
+	function myFunction() {
+  		var x = document.getElementById("myTopnav");
+  		if (x.className === "topnav") {
+    		x.className += " responsive";
+  		} else {
+    		x.className = "topnav";
+  		}
+	}
+	</script>
 </body>
 </html>
