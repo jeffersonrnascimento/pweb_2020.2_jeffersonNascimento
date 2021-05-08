@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta codigoSemana3="1653197272">
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+<title>Listar Dependentes</title>
+</head>
+
+<body>
+	<div class="topnav" id="myTopnav">
+		<a href="/">Início</a>
+		<div class="dropdown">
+			<button class="dropbtn"> Cliente </button>
+			<div class="dropdown-content">
+				<a href="/adicionarCliente">Adicionar Cliente</a>
+				<a class="active" href="/listarClientes">Listar Clientes</a>
+			</div>
+		</div>
+		<div class="dropdown">
+			<button class="dropbtn"> Produto </button>
+			<div class="dropdown-content">
+				<a href="/adicionarProduto">Adicionar Produto</a>
+				<a  href="/listarProdutos">Listar Produtos</a>
+			</div>
+		</div>
+		<a  href="/public/sobre.html">Sobre</a>
+		<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+	</div>
+
+	<div>
+		<center>
+			<h1>Lista de Dependentes</h1>
+		</center>
+	</div>
+
+	<div style="overflow-x:auto;">
+		<table>
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nome Completo</th>
+					<th>Data de Nascimento</th>
+					<th>Gênero</th>
+					<th>Editar</th>
+					<th>Remover</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="dependente: ${dependentes}">
+					<td th:text="${dependente.id}"></td>
+					<td th:text="${dependente.nome}"></td>
+					<td th:date="${dependente.dataNascimento}"></td>
+					<td th:text="${dependente.genero}"></td>
+					<td><a th:href="@{/editarDependente/{id}(id=${dependente.id})}">Editar</a>
+					</td>
+					<td><a th:href="@{/removerDependente/{id}(id=${dependente.id})}">Remover</a>
+					</td>
+				</tr>
+			<tbody>
+		</table>
+	</div>
+	<script>
+	function myFunction() {
+  		var x = document.getElementById("myTopnav");
+  		if (x.className === "topnav") {
+    		x.className += " responsive";
+  		} else {
+    		x.className = "topnav";
+  		}
+	}
+	</script>
+</body>
+</html>

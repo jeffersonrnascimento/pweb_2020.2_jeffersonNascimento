@@ -52,6 +52,7 @@
 					<th>Bairro</th>
 					<th>Rua</th>
 					<th>Número</th>
+					<th>Inserir Dependente</th>
 					<th>Editar</th>
 					<th>Remover</th>
 				</tr>
@@ -70,14 +71,48 @@
 					<td th:text="${cliente.bairro}"></td>
 					<td th:text="${cliente.rua}"></td>
 					<td th:text="${cliente.numero}"></td>
-					<td><a th:href="@{/editar/{id}(id=${cliente.id})}">Editar</a>
+					
+					<td><a th:href="@{/adicionarDependente/{id}(id=${cliente.id})}">Inserir Dependente</a></td>
+					<td><a th:href="@{/editar/{id}(id=${cliente.id})}">Editar</a></td>
+					<td><a th:href="@{/remover/{id}(id=${cliente.id})}">Remover</a></td>
+				</tr>
+			<tbody>
+		</table>
+	</div>
+	
+	<div>
+		<center>
+			<h1>Lista de Dependentes</h1>
+		</center>
+	</div>
+
+	<div style="overflow-x:auto;">
+		<table>
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nome Completo</th>
+					<th>Data de Nascimento</th>
+					<th>Gênero</th>
+					<th>Editar</th>
+					<th>Remover</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="dependente: ${dependentes}">
+					<td th:text="${dependente.id}"></td>
+					<td th:text="${dependente.nome}"></td>
+					<td th:date="${dependente.dataNascimento}"></td>
+					<td th:text="${dependente.genero}"></td>
+					<td><a th:href="@{/editarDependente/{id}(id=${dependente.id})}">Editar</a>
 					</td>
-					<td><a th:href="@{/remover/{id}(id=${cliente.id})}">Remover</a>
+					<td><a th:href="@{/removerDependente/{id}(id=${dependente.id})}">Remover</a>
 					</td>
 				</tr>
 			<tbody>
 		</table>
 	</div>
+	
 	<script>
 	function myFunction() {
   		var x = document.getElementById("myTopnav");

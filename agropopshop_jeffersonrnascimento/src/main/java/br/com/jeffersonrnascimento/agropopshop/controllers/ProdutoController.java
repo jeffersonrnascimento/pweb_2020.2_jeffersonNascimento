@@ -32,7 +32,7 @@ public class ProdutoController {
 	@GetMapping("/{listarProdutos}")
 	public ModelAndView listarProdutos() {
 		List<Produto> lista = produtoRepo.findAll();
-		ModelAndView ModelAndView = new ModelAndView("listarProdutos");
+		ModelAndView ModelAndView = new ModelAndView("/listarProdutos");
 		ModelAndView.addObject("produtos", lista);
 		return ModelAndView;
 	}
