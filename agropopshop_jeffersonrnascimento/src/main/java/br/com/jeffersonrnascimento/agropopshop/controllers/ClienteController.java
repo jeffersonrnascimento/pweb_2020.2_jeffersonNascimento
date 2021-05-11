@@ -1,6 +1,5 @@
 package br.com.jeffersonrnascimento.agropopshop.controllers;
 
-import java.lang.module.FindException;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.jeffersonrnascimento.agropopshop.model.Cliente;
@@ -80,37 +80,36 @@ public class ClienteController {
 		this.clienteRepo.save(cliente);
 		return new ModelAndView("redirect:detalheCliente/{id}");
 	}
-
 	/*
-	 * @GetMapping("/detalheCliente/{id}") public ModelAndView
-	 * detalheCliente(@PathVariable("id") long id) { Optional<Dependente>
-	 * listaDependentes = dependenteRepo.findById(id); Cliente cliente =
-	 * clienteRepo.findById(id).orElseThrow(() -> new
-	 * IllegalArgumentException("ID inválido:" + id)); ModelAndView mav = new
-	 * ModelAndView("detalheCliente"); mav.addObject("dependentes",
-	 * listaDependentes); mav.addObject(cliente); return mav; }
-	 */
-
-	@RequestMapping("/detalheCliente/{id}")
+	@GetMapping("/detalheCliente/{id}")
 	public ModelAndView detalheCliente(@PathVariable("id") long id) {
-		Cliente clientes = findById(id);
+		Optional<Dependente> listaDependentes = dependenteRepo.findById(id);
+		Cliente cliente = clienteRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("ID inválido:" + id));
 		ModelAndView mav = new ModelAndView("detalheCliente");
-		mav.addObject("clientes", clientes);
+		mav.addObject("dependentes", listaDependentes);
+		mav.addObject(cliente);
+		return mav;
+	} */
+	/*
+	@GetMapping("/detalheCliente/{id}")
+	public ModelAndView detalharCliente(@PathVariable("id") long id) {
+		Optional<Cliente> cliente = clienteRepo.findById(id);
+		ModelAndView mav = new ModelAndView("detalheCliente");
+		mav.addObject("cliente", cliente);
 		return mav;
 
-	}
-
-	private Cliente findById(long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public DependenteRepository getDependenteRepo() {
-		return dependenteRepo;
-	}
-
-	public void setDependenteRepo(DependenteRepository dependenteRepo) {
-		this.dependenteRepo = dependenteRepo;
+	}*/
+	
+	@RequestMapping(value="/detalheCliente/{id}", method=RequestMethod.GET)
+	public ModelAndView detalheCliente(@PathVariable("id") long id){
+		Optional<Cliente> cliente = clienteRepo.findById(id);
+		ModelAndView mv = new ModelAndView("detalheCliente");
+		mv.addObject("cliente", cliente);
+		
+		Optional<Dependente> dependentes = dependenteRepo.findById(id);
+		mv.addObject("dependente", dependentes);
+		
+		return mv;
 	}
 
 	@GetMapping("/adicionarDependente/{id}")

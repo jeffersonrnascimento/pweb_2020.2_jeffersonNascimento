@@ -14,6 +14,8 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,15 +34,16 @@ public class Dependente implements Serializable {
 	private Long id;
 
 	private String nomeDependente, genero;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "ID_CLIENTE")
+	@JsonManagedReference
 	private Cliente cliente;
 
 	@Column(nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataNascimento;
-	
+
 	public long getId() {
 		return id;
 	}
@@ -72,7 +75,7 @@ public class Dependente implements Serializable {
 	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-	
+
 	public Cliente getCliente() {
 		return cliente;
 	}
