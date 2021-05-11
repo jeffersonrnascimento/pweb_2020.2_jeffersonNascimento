@@ -1,6 +1,8 @@
 package br.com.jeffersonrnascimento.agropopshop.controllers;
 
+import java.lang.module.FindException;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,42 +29,32 @@ public class ClienteController {
 
 	ClienteController(ClienteRepository clienteRepo) {
 		this.clienteRepo = clienteRepo;
+
+	}
+
+	public String index() {
+		return "index.html";
 	}
 
 	@GetMapping("/listarClientes")
-	public ModelAndView listarClientes() {
+	public ModelAndView listarclientes() {
 		List<Cliente> lista = clienteRepo.findAll();
-		ModelAndView mav = new ModelAndView("listarClientes");
-		mav.addObject("clientes", lista);
-		return mav;
+		ModelAndView ModelAndView = new ModelAndView("listarClientes");
+		ModelAndView.addObject("clientes", lista);
+		return ModelAndView;
 	}
 
 	@GetMapping("/adicionarCliente")
 	public ModelAndView formAdicionarCliente() {
-		ModelAndView modelAndView = new ModelAndView("adicionarCliente");
-		modelAndView.addObject(new Cliente());
-		return modelAndView;
+		ModelAndView mav = new ModelAndView("adicionarCliente");
+		mav.addObject(new Cliente());
+		return mav;
 	}
 
 	@PostMapping("/adicionarCliente")
-	public String adicionarCliente(Cliente aSalvar) {
-		this.clienteRepo.save(aSalvar);
+	public String adicionarCliente(Cliente c) {
+		this.clienteRepo.save(c);
 		return "redirect:/listarClientes";
-	}
-
-	@GetMapping("/editar/{id}")
-	public ModelAndView formEditarCliente(@PathVariable("id") long id) {
-		Cliente aEditar = clienteRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("ID inválido:" + id));
-
-		ModelAndView modelAndView = new ModelAndView("editarCliente");
-		modelAndView.addObject(aEditar);
-		return modelAndView;
-	}
-
-	@PostMapping("/editar/{id}")
-	public ModelAndView editarCliente(@PathVariable("id") long id, Cliente cliente) {
-		this.clienteRepo.save(cliente);
-		return new ModelAndView("redirect:/listarClientes");
 	}
 
 	@GetMapping("/remover/{id}")
@@ -74,6 +66,45 @@ public class ClienteController {
 		return new ModelAndView("redirect:/listarClientes");
 	}
 
+	@GetMapping("/editar/{id}")
+	public ModelAndView editarCliente(@PathVariable("id") long id) {
+		Cliente cliente = clienteRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("ID inválido:" + id));
+
+		ModelAndView ModelAndView = new ModelAndView("editarCliente");
+		ModelAndView.addObject(cliente);
+		return ModelAndView;
+	}
+
+	@PostMapping("/editar/{id}")
+	public ModelAndView editarCliente(@PathVariable("id") long id, Cliente cliente) {
+		this.clienteRepo.save(cliente);
+		return new ModelAndView("redirect:detalheCliente/{id}");
+	}
+
+	/*
+	 * @GetMapping("/detalheCliente/{id}") public ModelAndView
+	 * detalheCliente(@PathVariable("id") long id) { Optional<Dependente>
+	 * listaDependentes = dependenteRepo.findById(id); Cliente cliente =
+	 * clienteRepo.findById(id).orElseThrow(() -> new
+	 * IllegalArgumentException("ID inválido:" + id)); ModelAndView mav = new
+	 * ModelAndView("detalheCliente"); mav.addObject("dependentes",
+	 * listaDependentes); mav.addObject(cliente); return mav; }
+	 */
+
+	@RequestMapping("/detalheCliente/{id}")
+	public ModelAndView detalheCliente(@PathVariable("id") long id) {
+		Cliente clientes = findById(id);
+		ModelAndView mav = new ModelAndView("detalheCliente");
+		mav.addObject("clientes", clientes);
+		return mav;
+
+	}
+
+	private Cliente findById(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	public DependenteRepository getDependenteRepo() {
 		return dependenteRepo;
 	}
@@ -83,9 +114,9 @@ public class ClienteController {
 	}
 
 	@GetMapping("/adicionarDependente/{id}")
-	public ModelAndView inserirDependente(@PathVariable("id") long id) {
+	public ModelAndView cadastrarDependente(@PathVariable("id") long id) {
 		Cliente cliente = clienteRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("ID inválido:" + id));
-		ModelAndView mav = new ModelAndView("/adicionarDependente");
+		ModelAndView mav = new ModelAndView("adicionarDependente");
 		mav.addObject(new Dependente());
 		mav.addObject(cliente);
 		return mav;

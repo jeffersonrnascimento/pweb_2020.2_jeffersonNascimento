@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta codigoSemana3="1653197272">
+<meta codigoSemana3="1938479512">
 <link th:href="@{/css/style.css}" rel="stylesheet" />
 <title>Adicionar Cliente</title>
 </head>
@@ -44,6 +44,7 @@
 			<input type="text" placeholder="Seu nome completo" th:field="*{nome}" required />
 			<label for="sexo">Gênero</label>
 			<select th:field="*{genero}" id="genero" name="genero">
+				<option value="" disabled selected="selected">Escolha</option>
 				<option value="Masculino">Masculino</option>
 				<option value="Feminino">Feminino</option>
 				<option value="Não Informar">Não Informar</option>
@@ -60,6 +61,7 @@
 			<input type="text" placeholder="CEP" th:field="*{cep}" required />
 			<label for="uf">UF</label>
 			<select th:field="*{uf}" id="uf">
+				<option value="" disabled selected="selected">Escolha</option>
 				<option value="AC">AC</option>
 				<option value="AL">AL</option>
 				<option value="AP">AP</option>

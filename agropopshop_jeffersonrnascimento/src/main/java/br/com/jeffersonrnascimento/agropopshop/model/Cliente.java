@@ -1,13 +1,15 @@
 package br.com.jeffersonrnascimento.agropopshop.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name="clientes")
+@Table(name = "clientes")
 public class Cliente implements Serializable{
 	
 	private static final long serialVersionUID = -8336795934270974404L;
@@ -27,7 +29,10 @@ public class Cliente implements Serializable{
 	private Long id;
 	
 	private String nome, email, genero, telefone, uf, cidade, bairro, rua, numero, cep;
-
+	
+	@OneToMany
+	@JoinColumn(name = "ID_CLIENTE")
+	private List<Dependente> dependentes;
 	
 	public Long getId() {
 		return id;
@@ -35,6 +40,14 @@ public class Cliente implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public List<Dependente> getDependentes() {
+		return dependentes;
+	}
+
+	public void setDependentes(List<Dependente> dependentes) {
+		this.dependentes = dependentes;
 	}
 
 	public String getNome() {
@@ -115,6 +128,6 @@ public class Cliente implements Serializable{
 
 	public void setCep(String cep) {
 		this.cep = cep;
-	}
+	}	
 	
 }

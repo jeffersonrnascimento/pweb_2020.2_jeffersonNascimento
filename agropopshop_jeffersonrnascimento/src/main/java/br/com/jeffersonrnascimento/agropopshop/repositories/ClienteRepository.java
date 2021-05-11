@@ -7,5 +7,5 @@ import br.com.jeffersonrnascimento.agropopshop.model.Cliente;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long>{
-	
+
 }

@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -27,16 +29,18 @@ public class Dependente implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 
-	private String nomeCompleto, genero;
+	private String nomeDependente, genero;
+	
+	@ManyToOne
+	@JoinColumn(name = "ID_CLIENTE")
+	private Cliente cliente;
 
 	@Column(nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataNascimento;
-
-	private String idPrincipal;
-
+	
 	public long getId() {
 		return id;
 	}
@@ -45,12 +49,12 @@ public class Dependente implements Serializable {
 		this.id = id;
 	}
 
-	public String getNomeCompleto() {
-		return nomeCompleto;
+	public String getNomeDependente() {
+		return nomeDependente;
 	}
 
-	public void setNomeCompleto(String nomeCompleto) {
-		this.nomeCompleto = nomeCompleto;
+	public void setNomeDependente(String nomeDependente) {
+		this.nomeDependente = nomeDependente;
 	}
 
 	public String getGenero() {
@@ -61,14 +65,6 @@ public class Dependente implements Serializable {
 		this.genero = genero;
 	}
 
-	public String getIdPrincipal() {
-		return idPrincipal;
-	}
-
-	public void setIdPrincipal(String idPrincipal) {
-		this.idPrincipal = idPrincipal;
-	}
-
 	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
@@ -76,4 +72,13 @@ public class Dependente implements Serializable {
 	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
+	
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
 }
