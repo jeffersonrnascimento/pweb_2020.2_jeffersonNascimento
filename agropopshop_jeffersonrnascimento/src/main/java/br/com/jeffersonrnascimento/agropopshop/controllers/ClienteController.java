@@ -104,11 +104,13 @@ public class ClienteController {
 	public ModelAndView detalheCliente(@PathVariable("id") long id){
 		Optional<Cliente> cliente = clienteRepo.findById(id);
 		ModelAndView mv = new ModelAndView("detalheCliente");
-		mv.addObject("cliente", cliente.get());
+		if( cliente.isPresent() ) 
+			mv.addObject("cliente", cliente.get());
 		
 		//Esse ID não é do depentente, é do cliente. Os IDs são diferentes
 		Optional<Dependente> dependente = dependenteRepo.findById(id);
-		mv.addObject("dependente", dependente.get());
+		if( dependente.isPresent() ) 
+			mv.addObject("dependente", dependente.get());
 
 		return mv;
 	}
