@@ -58,7 +58,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="cliente: ${clientes}">
+				<!-- <tr th:each="cliente: ${clientes}"> -->
+				<tr>
 					<td th:text="${cliente.id}"></td>
 					<td th:text="${cliente.nome}"></td>
 					<td><a th:href="'mailto:'+${cliente.email}"
@@ -99,7 +100,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="dependente: ${dependentes}">
+				<!-- <tr th:each="dependente: ${dependentes}"> -->
+				<tr>
 					<td th:text="${dependente.id}"></td>
 					<td th:text="${dependente.nomeDependente}"></td>
 					<td th:date="${dependente.dataNascimento}"></td>

@@ -102,13 +102,14 @@ public class ClienteController {
 	
 	@RequestMapping(value="/detalheCliente/{id}", method=RequestMethod.GET)
 	public ModelAndView detalheCliente(@PathVariable("id") long id){
-		Optional<Cliente> cliente = clienteRepo.findById(id);
+		Cliente cliente = clienteRepo.findById(id).get();
 		ModelAndView mv = new ModelAndView("detalheCliente");
 		mv.addObject("cliente", cliente);
 		
-		Optional<Dependente> dependentes = dependenteRepo.findById(id);
-		mv.addObject("dependente", dependentes);
-		
+		//Esse ID não é do depentente, é do cliente. Os IDs são diferentes
+		Dependente dependente = dependenteRepo.findById(id).get();
+		mv.addObject("dependente", dependente);
+
 		return mv;
 	}
 
