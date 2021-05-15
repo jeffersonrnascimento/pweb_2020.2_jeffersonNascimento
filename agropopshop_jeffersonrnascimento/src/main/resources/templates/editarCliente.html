@@ -37,7 +37,7 @@
 			</center>
 		</div>
 
-		<form action="#" th:action="@{/editarCliente/{id}(id=${cliente.id})}"
+		<form action="#" th:action="@{/editarCliente/{idCliente}(idCliente=${cliente.idCliente})}"
 			th:object="${cliente}" th:method="POST">
 
 			<div class="box">

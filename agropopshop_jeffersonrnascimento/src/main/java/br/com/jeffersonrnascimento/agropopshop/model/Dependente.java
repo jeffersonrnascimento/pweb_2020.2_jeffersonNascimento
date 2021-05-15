@@ -33,7 +33,7 @@ public class Dependente implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String nomeDependente, genero;
+	private String nome_dependente, genero;
 
 	@ManyToOne
 	@JoinColumn(name = "ID_CLIENTE")
@@ -42,7 +42,7 @@ public class Dependente implements Serializable {
 
 	@Column(nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate dataNascimento;
+	private LocalDate data_nascimento;
 
 	public long getId() {
 		return id;
@@ -52,12 +52,12 @@ public class Dependente implements Serializable {
 		this.id = id;
 	}
 
-	public String getNomeDependente() {
-		return nomeDependente;
+	public String getNome_dependente() {
+		return nome_dependente;
 	}
 
-	public void setNomeDependente(String nomeDependente) {
-		this.nomeDependente = nomeDependente;
+	public void setNome_dependente(String nome_dependente) {
+		this.nome_dependente = nome_dependente;
 	}
 
 	public String getGenero() {
@@ -68,12 +68,12 @@ public class Dependente implements Serializable {
 		this.genero = genero;
 	}
 
-	public LocalDate getDataNascimento() {
-		return dataNascimento;
+	public LocalDate getData_nascimento() {
+		return data_nascimento;
 	}
 
-	public void setDataNascimento(LocalDate dataNascimento) {
-		this.dataNascimento = dataNascimento;
+	public void setData_nascimento(LocalDate data_nascimento) {
+		this.data_nascimento = data_nascimento;
 	}
 
 	public Cliente getCliente() {

@@ -50,11 +50,11 @@
 			</thead>
 			<tbody>
 				<tr th:each="cliente: ${clientes}">
-					<td th:text="${cliente.id}"></td>
+					<td th:text="${cliente.id_cliente}"></td>
 					<td th:text="${cliente.nome}"></td>
 					<td><a th:href="'mailto:'+${cliente.email}"
 						th:text="${cliente.email}"></a></td>
-					<td><a th:href="@{/detalheCliente/{id}(id=${cliente.id})}">Mais</a></td>
+					<td><a th:href="@{/detalheCliente/{id_cliente}(id_cliente=${cliente.id_cliente})}">Mais</a></td>
 				</tr>
 			<tbody>
 		</table>

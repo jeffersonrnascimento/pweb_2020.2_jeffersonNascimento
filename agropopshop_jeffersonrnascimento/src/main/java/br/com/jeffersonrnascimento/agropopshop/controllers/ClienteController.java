@@ -5,12 +5,15 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.jeffersonrnascimento.agropopshop.model.Cliente;
 import br.com.jeffersonrnascimento.agropopshop.model.Dependente;
@@ -57,62 +60,42 @@ public class ClienteController {
 		return "redirect:/listarClientes";
 	}
 
-	@GetMapping("/remover/{id}")
-	public ModelAndView removerCliente(@PathVariable("id") long id) {
-		Cliente aRemover = clienteRepo.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("ID inválido:" + id));
+	@GetMapping("/remover/{id_cliente}")
+	public ModelAndView removerCliente(@PathVariable("id_cliente") long id_cliente) {
+		Cliente aRemover = clienteRepo.findById(id_cliente)
+				.orElseThrow(() -> new IllegalArgumentException("ID inválido:" + id_cliente));
 
 		clienteRepo.delete(aRemover);
 		return new ModelAndView("redirect:/listarClientes");
 	}
 
-	@GetMapping("/editar/{id}")
-	public ModelAndView editarCliente(@PathVariable("id") long id) {
-		Cliente cliente = clienteRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("ID inválido:" + id));
+	@GetMapping("/editar/{id_cliente}")
+	public ModelAndView editarCliente(@PathVariable("id_cliente") long id_cliente) {
+		Cliente cliente = clienteRepo.findById(id_cliente).orElseThrow(() -> new IllegalArgumentException("ID inválido:" + id_cliente));
 
 		ModelAndView ModelAndView = new ModelAndView("editarCliente");
 		ModelAndView.addObject(cliente);
 		return ModelAndView;
 	}
 
-	@PostMapping("/editar/{id}")
-	public ModelAndView editarCliente(@PathVariable("id") long id, Cliente cliente) {
+	@PostMapping("/editar/{id_cliente}")
+	public ModelAndView editarCliente(@PathVariable("id_cliente") long id_cliente, Cliente cliente) {
 		this.clienteRepo.save(cliente);
-		return new ModelAndView("redirect:detalheCliente/{id}");
+		return new ModelAndView("redirect:detalheCliente/{id_cliente}");
 	}
-	/*
-	@GetMapping("/detalheCliente/{id}")
-	public ModelAndView detalheCliente(@PathVariable("id") long id) {
-		Optional<Dependente> listaDependentes = dependenteRepo.findById(id);
-		Cliente cliente = clienteRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("ID inválido:" + id));
-		ModelAndView mav = new ModelAndView("detalheCliente");
-		mav.addObject("dependentes", listaDependentes);
-		mav.addObject(cliente);
-		return mav;
-	} */
-	/*
-	@GetMapping("/detalheCliente/{id}")
-	public ModelAndView detalharCliente(@PathVariable("id") long id) {
-		Optional<Cliente> cliente = clienteRepo.findById(id);
-		ModelAndView mav = new ModelAndView("detalheCliente");
-		mav.addObject("cliente", cliente);
-		return mav;
-
-	}*/
 	
-	@RequestMapping(value="/detalheCliente/{id}", method=RequestMethod.GET)
-	public ModelAndView detalheCliente(@PathVariable("id") long id){
-		Optional<Cliente> cliente = clienteRepo.findById(id);
+	@RequestMapping(value="/detalheCliente/{id_cliente}", method=RequestMethod.GET)
+	public ModelAndView detalheCliente(@PathVariable("id_cliente") long id_cliente){
+		Cliente cliente = clienteRepo.findById(id_cliente).get();
 		ModelAndView mv = new ModelAndView("detalheCliente");
-		mv.addObject("cliente", cliente.get());
+		mv.addObject("cliente", cliente);
 		
 		//Esse ID não é do depentente, é do cliente. Os IDs são diferentes
-		Optional<Dependente> dependente = dependenteRepo.findById(id);
-		mv.addObject("dependente", dependente.get());
-
+		List<Dependente> dependentes = cliente.getDependentes();
+		mv.addObject("dependentes", dependentes);
 		return mv;
 	}
-
+	
 	@GetMapping("/adicionarDependente/{id}")
 	public ModelAndView cadastrarDependente(@PathVariable("id") long id) {
 		Cliente cliente = clienteRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("ID inválido:" + id));
