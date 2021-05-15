@@ -95,7 +95,7 @@ public class ClienteController {
 		mv.addObject("dependentes", dependentes);
 		return mv;
 	}
-	
+	/*
 	@GetMapping("/adicionarDependente/{id}")
 	public ModelAndView cadastrarDependente(@PathVariable("id") long id) {
 		Cliente cliente = clienteRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("ID inválido:" + id));
@@ -103,6 +103,20 @@ public class ClienteController {
 		mav.addObject(new Dependente());
 		mav.addObject(cliente);
 		return mav;
+	}
+	*/
+	
+	@RequestMapping(value="/{detalheCliente/{id_cliente}", method=RequestMethod.POST)
+	public String detalhesClientePost(@PathVariable("id_cliente") long id_cliente, @Validated Dependente dependente,  BindingResult result, RedirectAttributes attributes){
+		if(result.hasErrors()){
+			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
+			return "redirect:/{detalheCliente/{id_cliente}";
+		}
+		Optional<Cliente> cliente = clienteRepo.findById(id_cliente);
+		dependente.setCliente(cliente);
+		dependenteRepo.save(dependente);
+		attributes.addFlashAttribute("mensagem", "Dependente adicionado com sucesso!");
+		return "redirect:/{detalheCliente/{id_cliente}";
 	}
 
 }
