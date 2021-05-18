@@ -2,10 +2,12 @@ package br.com.jeffersonrnascimento.agropopshop.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -34,6 +36,10 @@ public class Produto implements Serializable{
 	private double peso;
 	private double preco;
 	private double volume_produto;
+	
+	/*@Lob
+	@Column(name="BOOK_IMAGE", nullable=false, columnDefinition="mediumblob")
+	private byte[] image;*/
 	
 	
 	public long getId() {
@@ -90,6 +96,14 @@ public class Produto implements Serializable{
 	public void setVolume_produto(double volume_produto) {
 		this.volume_produto = volume_produto;
 	}
+	
+	/*public byte[] getImage() {
+		return image;
+	}
+	public void setImage(byte[] image) {
+		this.image = image;
+	}*/
+	
 	
 
 }

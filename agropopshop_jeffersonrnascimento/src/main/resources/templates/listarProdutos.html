@@ -27,6 +27,7 @@
 				<a class="active" href="/listarProdutos">Listar Produtos</a>
 			</div>
 		</div>
+		<a href="/public/contato.html">Contato</a>
 		<a href="/public/sobre.html">Sobre</a>
 		<a href="javascript:void(0);" style="font-size: 15px;" class="icon" onclick="myFunction()">&#9776;</a>
 	</div>
@@ -50,6 +51,7 @@
 					<th>Profundidade</th>
 					<th>Peso</th>
 					<th>Volume do Produto</th>
+					<!-- <th>Imagem</th> -->
 					<th>Editar</th>
 					<th>Remover</th>
 				</tr>
@@ -66,7 +68,7 @@
 					<td th:text="${produto.profundidade}"></td>
 					<td th:text="${produto.peso}"></td>
 					<td th:text="${produto.volume_produto}"></td>
-					<td th:file="${produto.volume_produto}"></td>
+					<!-- <td th:text="${produto.image}"></td> -->
 					<td>
 						<a th:href="@{/editarProduto/{id}(id=${produto.id})}">Editar</a>
 					</td>
