@@ -33,6 +33,7 @@ public class Produto implements Serializable{
 	private double profundidade;
 	private double peso;
 	private double preco;
+	private double volume_produto;
 	
 	
 	public long getId() {
@@ -82,6 +83,12 @@ public class Produto implements Serializable{
 	}
 	public void setPreco(double preco) {
 		this.preco = preco;
+	}
+	public double getVolume_produto() {
+		return volume_produto = largura*profundidade*altura;
+	}
+	public void setVolume_produto(double volume_produto) {
+		this.volume_produto = volume_produto;
 	}
 	
 
