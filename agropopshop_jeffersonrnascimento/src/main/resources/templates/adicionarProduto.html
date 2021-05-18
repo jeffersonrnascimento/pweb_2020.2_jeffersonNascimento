@@ -12,32 +12,33 @@
 
 <body>
 	<div class="topnav" id="myTopnav">
-		<a href="/" >Início</a>
+		<a href="/">Início</a>
 		<div class="dropdown">
-			<button class="dropbtn"> Cliente </button>
+			<button class="dropbtn">Cliente</button>
 			<div class="dropdown-content">
-				<a href="/adicionarCliente">Adicionar Cliente</a>
-				<a href="/listarClientes">Listar Clientes</a>
+				<a href="/adicionarCliente">Adicionar Cliente</a> <a
+					href="/listarClientes">Listar Clientes</a>
 			</div>
 		</div>
 		<div class="dropdown">
 			<button class="dropbtn">Produto</button>
 			<div class="dropdown-content">
-				<a class="active" href="/adicionarProduto">Adicionar Produto</a>
-				<a href="/listarProdutos">Listar Produtos</a>
+				<a class="active" href="/adicionarProduto">Adicionar Produto</a> <a
+					href="/listarProdutos">Listar Produtos</a>
 			</div>
 		</div>
-		<a href="/public/sobre.html">Sobre</a>
-		<a href="javascript:void(0);" style="font-size: 15px;" class="icon" onclick="myFunction()">&#9776;</a>
+		<a href="/public/sobre.html">Sobre</a> <a href="javascript:void(0);"
+			style="font-size: 15px;" class="icon" onclick="myFunction()">&#9776;</a>
 	</div>
 
-		<div>
-			<center>
+	<div>
+		<center>
 			<h1>Adicionar Produto</h1>
-			</center>
-		</div>
+		</center>
+	</div>
 
-		<form method="POST" th:object="${produto}" th:action="@{/adicionarProduto}">
+	<form method="POST" th:object="${produto}"
+		th:action="@{/adicionarProduto}">
 		<div class="box">
 
 			<p>
@@ -49,8 +50,8 @@
 					th:field="*{marca}" required />
 			</p>
 			<p>
-				Preço <input type="text" placeholder="R$ 0.00"
-					th:field="*{preco}" required />
+				Preço <input type="text" placeholder="R$ 0.00" th:field="*{preco}"
+					required />
 			</p>
 			<p>
 				Altura <input type="text" placeholder="Ex.: 1.60 cm"
@@ -65,17 +66,23 @@
 					th:field="*{profundidade}" required />
 			</p>
 			<p>
-				Peso <input type="text" placeholder="Ex.: 10 kl"
-					th:field="*{peso}" required />
+				Peso <input type="text" placeholder="Ex.: 10 kl" th:field="*{peso}"
+					required />
 			</p>
-			
-			<input type="reset"  value="Limpar">
-			<input type="submit" value="Cadastrar">
-		</form>
+			<p>
+				Imagem
+				<input type=file>
+				<img />
+				<!-- <input type=button value=""> -->
+			</p>
 
-		<p>* Campo Obrigatório</p>
+			<input type="reset" value="Limpar"> <input type="submit"
+				value="Cadastrar">
+	</form>
+
+	<p>* Campo Obrigatório</p>
 	</div>
-</div>
+	</div>
 
 	<script>
 		function myFunction() {
@@ -86,6 +93,40 @@
 				x.className = "topnav";
 			}
 		}
+	</script>
+
+	<script>
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					$img = $('<img/>').attr('src', e.target.result);
+					$(input).after($img);
+				}
+
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+
+		function verificaMostraBotao() {
+			$('input[type=file]').each(function(index) {
+				if ($('input[type=file]').eq(index).val() != "")
+					$('.hide').show();
+			});
+		}
+
+		$('body').on("change", "input[type=file]", function() {
+			verificaMostraBotao();
+			readURL(this);
+		});
+
+		$('.hide').on("click", function() {
+			$(document.body).append($('<input />', {
+				type : "file"
+			}).change(verificaMostraBotao));
+			$('.hide').hide();
+		});
 	</script>
 
 </body>
