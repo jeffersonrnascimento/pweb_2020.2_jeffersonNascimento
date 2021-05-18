@@ -71,13 +71,13 @@ public class ClienteController {
 		Cliente cliente = clienteRepo.findById(id_cliente)
 				.orElseThrow(() -> new IllegalArgumentException("ID inválido:" + id_cliente));
 
-		ModelAndView ModelAndView = new ModelAndView("editarCliente");
+		ModelAndView ModelAndView = new ModelAndView("/editarCliente");
 		ModelAndView.addObject(cliente);
 		return ModelAndView;
 	}
 
 	@PostMapping("/editar/{id_cliente}")
-	public ModelAndView editarCliente(@PathVariable("id_cliente") long id_cliente, Cliente cliente) {
+	public ModelAndView editandoCliente(@PathVariable("id_cliente") long id_cliente, Cliente cliente) {
 		this.clienteRepo.save(cliente);
 		return new ModelAndView("redirect:/detalheCliente/{id_cliente}");
 	}
