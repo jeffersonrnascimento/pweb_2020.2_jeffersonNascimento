@@ -28,7 +28,16 @@ public class Cliente implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_cliente;
 
-	private String nome, email, genero, telefone, uf, cidade, bairro, rua, numero, cep;
+	private String nome;
+	private String email;
+	private String genero;
+	private String telefone;
+	private String uf;
+	private String cidade;
+	private String bairro;
+	private String rua;
+	private String numero;
+	private String cep;
 
 	@OneToMany(mappedBy = "cliente", cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	private List<Dependente> dependentes;

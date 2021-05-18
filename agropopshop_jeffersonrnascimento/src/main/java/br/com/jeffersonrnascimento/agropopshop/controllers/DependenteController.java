@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.jeffersonrnascimento.agropopshop.model.Dependente;
@@ -12,6 +13,7 @@ import br.com.jeffersonrnascimento.agropopshop.repositories.ClienteRepository;
 import br.com.jeffersonrnascimento.agropopshop.repositories.DependenteRepository;
 
 @Controller
+@RequestMapping("/")
 public class DependenteController {
 	ClienteRepository clienteRepo;
 

@@ -33,7 +33,8 @@ public class Dependente implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String nome_dependente, genero;
+	private String nome_dependente;
+	private String genero;
 
 	@ManyToOne
 	@JoinColumn(name = "ID_CLIENTE")

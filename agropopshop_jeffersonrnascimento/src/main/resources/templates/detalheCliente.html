@@ -81,15 +81,15 @@
 	
 			
 	<h1>Cadastrar Dependente</h1>
-	<form method="POST" th:object="${dependentes}">
+	<form method="POST" action="dependente/adicionarDependente">
 		<div class="box">
 			<h3>Dados Pessoais</h3>
 			<label for="fname">Nome Completo</label>
-			<input type="text" placeholder="Seu nome completo" th:field="*{nome_dependente}" required />
+			<input type="text" placeholder="Seu nome completo" name="nome_dependente" required />
 			<label for="fname">Data de Nascimento</label>
-			<input type="date" name="dataNascimento" id="dataNascimento" th:field="*{data_nascimento}" required />
+			<input type="date" placeholder="dd/mm/aaaa" name="data_nascimento" required />
 			<label for="sexo">Gênero</label>
-			<select th:field="*{genero}" id="genero" name="genero">
+			<select id="genero" name="genero">
 				<option value="" disabled selected="selected">Escolha</option>
 				<option value="Masculino">Masculino</option>
 				<option value="Feminino">Feminino</option>
@@ -100,6 +100,39 @@
 			<input type="submit" value="Cadastrar">
 		</div>
 	</form>	
+	
+<!-- 	<div>
+		<center>
+			<h1>Dependentes</h1>
+		</center>
+	</div>
+
+	<div style="overflow-x:auto;">
+		<table>
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nome Completo</th>
+					<th>Data de Nascimento</th>
+					<th>Gênero</th>
+					<th>Editar</th>
+					<th>Remover</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="dependente: ${dependentes}">
+				<tr>
+					<td th:text="${dependente.id}"></td>
+					<td th:text="${dependente.nome_dependente}"></td>
+					<td th:text="${dependente.data_nascimento}"></td>
+					<td th:text="${dependente.genero}"></td>
+					
+					<td><a th:href="@{/editar/{id}(id=${dependente.id})}">Editar</a></td>
+					<td><a th:href="@{/remover/{id}(id=${dependente.id})}">Remover</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div> -->
 	
 	<script>
 	function myFunction() {

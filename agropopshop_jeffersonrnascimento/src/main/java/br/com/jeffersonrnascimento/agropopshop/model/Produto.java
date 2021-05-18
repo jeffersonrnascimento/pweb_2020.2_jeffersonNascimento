@@ -25,8 +25,14 @@ public class Produto implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
-	private String nomeProduto, marca;
-	private double altura, largura, profundidade, peso, preco;
+	private String nomeProduto;
+	private String marca;
+	
+	private double altura;
+	private double largura;
+	private double profundidade;
+	private double peso;
+	private double preco;
 	
 	
 	public long getId() {
