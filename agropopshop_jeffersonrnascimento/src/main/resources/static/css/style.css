@@ -2,6 +2,7 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 	margin: 0;
 	background: #f3f3f3;
+	background-attachment: fixed;
 }
 
 .topnav {
@@ -153,6 +154,9 @@ td {
 	padding-left: 5px;
 	padding-right: 5px;
 }
+#myTable tr {
+  /* Add a bottom border to all table rows */
+  border-bottom: 1px solid #ddd;
 
 /* Formulários */
 input[type=text], select {
@@ -193,23 +197,4 @@ input[type=reset]:hover {
 	width: 25%;
 	padding: 5%;
 	background-color: #ffffff;
-}
-
-.whatsapp-link {
-	position: fixed;
-	width: 60px;
-	height: 60px;
-	bottom: 40px;
-	right: 40px;
-	background-color: #25d366;
-	color: #fff;
-	border-radius: 50px;
-	text-align: center;
-	font-size: 30px;
-	box-shadow: 1px 1px 2px #888;
-	z-index: 1000;
-}
-
-.fa-whatsapp {
-	margin-top: 16px;
 }
