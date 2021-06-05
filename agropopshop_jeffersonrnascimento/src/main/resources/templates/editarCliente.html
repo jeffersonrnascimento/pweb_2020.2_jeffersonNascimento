@@ -48,9 +48,9 @@
 				if (!("erro" in conteudo)) {
 					//Atualiza os campos com os valores.
 					document.getElementById('uf').value = (conteudo.uf);
-					document.getElementById('cidade').value = (conteudo.cidade);
+					document.getElementById('cidade').value = (conteudo.localidade);
 					document.getElementById('bairro').value = (conteudo.bairro);
-					document.getElementById('rua').value = (conteudo.rua);
+					document.getElementById('rua').value = (conteudo.logradouro);
 
 				} //end if.
 				else {
@@ -118,10 +118,10 @@
 
 			<h3>Dados Pessoais</h3>
 			<label for="fname">Nome Completo</label> <input type="text"
-				placeholder="Seu nome completo" th:field="*{nome}" required /> <label
-				for="sexo">Gênero</label> <select th:field="*{genero}" id="genero"
-				name="genero">
-				<option value="" disabled selected="selected">Escolha</option>
+				placeholder="Seu nome completo" th:field="*{nome}" required />
+			<label for="sexo">Gênero</label>
+			<select th:field="*{genero}" id="genero" name="genero">
+				<option value="">Escolha</option>
 				<option value="Masculino">Masculino</option>
 				<option value="Feminino">Feminino</option>
 				<option value="Não Informar">Não Informar</option>
@@ -138,7 +138,7 @@
 				id="cep" th:field="*{cep}" onblur="pesquisacep(this.value);"
 				required /> <label for="uf">UF</label> <select th:field="*{uf}"
 				id="uf" name="uf">
-				<option value="" disabled selected="selected">Escolha</option>
+				<option value="">Escolha</option>
 				<option value="AC">AC</option>
 				<option value="AL">AL</option>
 				<option value="AP">AP</option>

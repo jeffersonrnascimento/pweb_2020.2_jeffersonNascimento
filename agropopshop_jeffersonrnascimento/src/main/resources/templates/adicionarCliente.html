@@ -14,96 +14,96 @@
 	<div class="topnav" id="myTopnav">
 		<a href="/">Início</a>
 		<div class="dropdown">
-			<button class="dropbtn"> Cliente </button>
+			<button class="dropbtn">Cliente</button>
 			<div class="dropdown-content">
-				<a class="active" href="/adicionarCliente">Adicionar Cliente</a>
-				<a href="/listarClientes">Listar Clientes</a>
+				<a class="active" href="/adicionarCliente">Adicionar Cliente</a> <a
+					href="/listarClientes">Listar Clientes</a>
 			</div>
 		</div>
 		<div class="dropdown">
 			<button class="dropbtn">Produto</button>
 			<div class="dropdown-content">
-				<a href="/adicionarProduto">Adicionar Produto</a>
-				<a href="/listarProdutos">Listar Produtos</a>
+				<a href="/adicionarProduto">Adicionar Produto</a> <a
+					href="/listarProdutos">Listar Produtos</a>
 			</div>
 		</div>
-		<a  href="/public/contato.html">Contato</a>
-		<a href="/public/sobre.html">Sobre</a>
-		<a href="javascript:void(0);" style="font-size: 15px;" class="icon" onclick="myFunction()">&#9776;</a>
+		<a href="/public/contato.html">Contato</a> <a
+			href="/public/sobre.html">Sobre</a> <a href="javascript:void(0);"
+			style="font-size: 15px;" class="icon" onclick="myFunction()">&#9776;</a>
 	</div>
-	
+
 	<div>
-	 <script>
-    
-    function limpa_formulário_cep() {
-            //Limpa valores do formulário de cep.
-            document.getElementById('uf').value=("");
-            document.getElementById('cidade').value=("");
-            document.getElementById('bairro').value=("");
-            document.getElementById('rua').value=("");
-    }
+		<script>
+			function limpa_formulário_cep() {
+				//Limpa valores do formulário de cep.
+				document.getElementById('uf').value = ("");
+				document.getElementById('cidade').value = ("");
+				document.getElementById('bairro').value = ("");
+				document.getElementById('rua').value = ("");
+			}
 
-    function meu_callback(conteudo) {
-        if (!("erro" in conteudo)) {
-            //Atualiza os campos com os valores.
-             document.getElementById('uf').value=(conteudo.uf);
-            document.getElementById('cidade').value=(conteudo.cidade);
-            document.getElementById('bairro').value=(conteudo.bairro);
-            document.getElementById('rua').value=(conteudo.rua);
-            
-        } //end if.
-        else {
-            //CEP não Encontrado.
-            limpa_formulário_cep();
-            alert("CEP não encontrado.");
-        }
-    }
-        
-    function pesquisacep(valor) {
+			function meu_callback(conteudo) {
+				if (!("erro" in conteudo)) {
+					//Atualiza os campos com os valores.
+					document.getElementById('uf').value = (conteudo.uf);
+					document.getElementById('cidade').value = (conteudo.localidade);
+					document.getElementById('bairro').value = (conteudo.bairro);
+					document.getElementById('rua').value = (conteudo.logradouro);					
 
-        //Nova variável "cep" somente com dígitos.
-        var cep = valor.replace(/\D/g, '');
+				} //end if.
+				else {
+					//CEP não Encontrado.
+					limpa_formulário_cep();
+					alert("CEP não encontrado.");
+				}
+			}
 
-        //Verifica se campo cep possui valor informado.
-        if (cep != "") {
+			function pesquisacep(valor) {
 
-            //Expressão regular para validar o CEP.
-            var validacep = /^[0-9]{8}$/;
+				//Nova variável "cep" somente com dígitos.
+				var cep = valor.replace(/\D/g, '');
 
-            //Valida o formato do CEP.
-            if(validacep.test(cep)) {
+				//Verifica se campo cep possui valor informado.
+				if (cep != "") {
 
-                //Preenche os campos com "..." enquanto consulta webservice.
-                document.getElementById('uf').value="...";
-                document.getElementById('cidade').value="...";
-                document.getElementById('bairro').value="...";
-                document.getElementById('rua').value="...";
-                
-                //Cria um elemento javascript.
-                var script = document.createElement('script');
+					//Expressão regular para validar o CEP.
+					var validacep = /^[0-9]{8}$/;
 
-                //Sincroniza com o callback.
-                script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+					//Valida o formato do CEP.
+					if (validacep.test(cep)) {
 
-                //Insere script no documento e carrega o conteúdo.
-                document.body.appendChild(script);
+						//Preenche os campos com "..." enquanto consulta webservice.
+						document.getElementById('uf').value = "...";
+						document.getElementById('cidade').value = "...";
+						document.getElementById('bairro').value = "...";
+						document.getElementById('rua').value = "...";
 
-            } //end if.
-            else {
-                //cep é inválido.
-                limpa_formulário_cep();
-                alert("Formato de CEP inválido.");
-            }
-        } //end if.
-        else {
-            //cep sem valor, limpa formulário.
-            limpa_formulário_cep();
-        }
-    };
+						//Cria um elemento javascript.
+						var script = document.createElement('script');
 
-    </script>
+						//Sincroniza com o callback.
+						script.src = 'https://viacep.com.br/ws/' + cep
+								+ '/json/?callback=meu_callback';
+
+						//Insere script no documento e carrega o conteúdo.
+						document.body.appendChild(script);
+
+					} //end if.
+					else {
+						//cep é inválido.
+						limpa_formulário_cep();
+						alert("Formato de CEP inválido.");
+					}
+				} //end if.
+				else {
+					//cep sem valor, limpa formulário.
+					limpa_formulário_cep();
+				}
+			};
+		</script>
 
 	</div>
+<body>
 
 	<div>
 		<center>
@@ -111,31 +111,32 @@
 		</center>
 	</div>
 
-		<div id="box">
-		<form action="." method="POST" th:object="${cliente}" th:action="@{adicionarCliente}">
+	<div id="box">
+		<form action="." method="POST" th:object="${cliente}"
+			th:action="@{adicionarCliente}">
 			<h3>Dados Pessoais</h3>
 			<label for="fname">Nome Completo</label>
 			<input type="text" placeholder="Seu nome completo" th:field="*{nome}" required />
 			<label for="sexo">Gênero</label>
 			<select th:field="*{genero}" id="genero" name="genero">
-				<option value="" disabled selected="selected">Escolha</option>
+				<option value="">Escolha</option>
 				<option value="Masculino">Masculino</option>
 				<option value="Feminino">Feminino</option>
 				<option value="Não Informar">Não Informar</option>
 			</select>
 
 			<h3>Contato</h3>
-			<label for="email">e-Mail</label>
-			<input type="text" placeholder="nome@dominio.com" th:field="*{email}" required />
-			<label for="telefone">Telefone</label>
-			<input type="text" placeholder="(00) 0000-0000" th:field="*{telefone}" required />
-			
+			<label for="email">e-Mail</label> <input type="text"
+				placeholder="nome@dominio.com" th:field="*{email}" required /> <label
+				for="telefone">Telefone</label> <input type="text"
+				placeholder="(00) 0000-0000" th:field="*{telefone}" required />
+
 			<h3>Endereço Residencial</h3>
-			<label for="cep">CEP</label>
-			<input type="text" placeholder="CEP" id="cep" th:field="*{cep}" onblur="pesquisacep(this.value);" required />
-			<label for="uf">UF</label>
-			<select th:field="*{uf}" id="uf" name="uf">
-				<option value="" disabled selected="selected">Escolha</option>
+			<label for="cep">CEP</label> <input type="text" placeholder="CEP"
+				id="cep" th:field="*{cep}" onblur="pesquisacep(this.value);"
+				required /> <label for="uf">UF</label> <select th:field="*{uf}"
+				id="uf" name="uf">
+				<option value="">Escolha</option>
 				<option value="AC">AC</option>
 				<option value="AL">AL</option>
 				<option value="AP">AP</option>
@@ -163,31 +164,29 @@
 				<option value="SP">SP</option>
 				<option value="SE">SE</option>
 				<option value="TO">TO</option>
-			</select>
-			<label for="cidade">Cidade</label>
-			<input type="text" placeholder="Cidade" id="cidade" th:field="*{cidade}" required />
-			<label for="bairro">Bairro</label>
-			<input type="text" placeholder="Bairro" id="bairro" th:field="*{bairro}" required />
-			<label for="rua">Rua</label>
-			<input type="text" placeholder="Rua" id="rua" th:field="*{rua}" required />
-			<label for="nResidencial">Nº Residencial</label>
-			<input type="text" placeholder="Número de residência" id="numero" th:field="*{numero}" required />
-			
-			<input type="reset"  value="Limpar">
+			</select> <label for="cidade">Cidade</label> <input type="text"
+				placeholder="Cidade" id="cidade" th:field="*{cidade}" required /> <label
+				for="bairro">Bairro</label> <input type="text" placeholder="Bairro"
+				id="bairro" th:field="*{bairro}" required /> <label for="rua">Rua</label>
+			<input type="text" placeholder="Rua" id="rua" th:field="*{rua}"
+				required /> <label for="nResidencial">Nº Residencial</label> <input
+				type="text" placeholder="Número de residência" id="numero"
+				th:field="*{numero}" required /> <input type="reset" value="Limpar">
 			<input type="submit" value="Cadastrar">
-	</form>
+		</form>
 	</div>
+</body>
 
-	<script>
-		function myFunction() {
-			var x = document.getElementById("myTopnav");
-			if (x.className === "topnav") {
-				x.className += " responsive";
-			} else {
-				x.className = "topnav";
-			}
+<script>
+	function myFunction() {
+		var x = document.getElementById("myTopnav");
+		if (x.className === "topnav") {
+			x.className += " responsive";
+		} else {
+			x.className = "topnav";
 		}
-	</script>
+	}
+</script>
 
 </body>
 
