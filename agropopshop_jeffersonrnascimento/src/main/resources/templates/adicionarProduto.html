@@ -38,8 +38,7 @@
 		</center>
 	</div>
 
-	<form method="POST" th:object="${produto}"
-		th:action="@{/adicionarProduto}">
+	<form method="POST" th:object="${produto}" th:action="@{/adicionarProduto}" enctype="multipart/form-data">
 		<div id="box">
 
 			<p>
@@ -71,9 +70,7 @@
 					required />
 			</p>
 			<p>
-				Imagem
-				<input type=file>
-				<img />
+				Imagem <input type=file id="file" name="fileProduto">
 			</p>
 
 			<input type="reset" value="Limpar"> <input type="submit"
@@ -93,40 +90,6 @@
 				x.className = "topnav";
 			}
 		}
-	</script>
-
-	<script>
-		function readURL(input) {
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
-
-				reader.onload = function(e) {
-					$img = $('<img/>').attr('src', e.target.result);
-					$(input).after($img);
-				}
-
-				reader.readAsDataURL(input.files[0]);
-			}
-		}
-
-		function verificaMostraBotao() {
-			$('input[type=file]').each(function(index) {
-				if ($('input[type=file]').eq(index).val() != "")
-					$('.hide').show();
-			});
-		}
-
-		$('body').on("change", "input[type=file]", function() {
-			verificaMostraBotao();
-			readURL(this);
-		});
-
-		$('.hide').on("click", function() {
-			$(document.body).append($('<input />', {
-				type : "file"
-			}).change(verificaMostraBotao));
-			$('.hide').hide();
-		});
 	</script>
 
 </body>

@@ -167,12 +167,6 @@ td {
 	background-color: #ffffff;
 }
 
-#botao-whatsapp{
-	position:fixed;
-	bottom:20px;
-	right:30px;
-}
-
 /* Formulários */
 input[type=text], select {
 	width: 100%;

@@ -53,7 +53,7 @@
 					<th>Profundidade</th>
 					<th>Peso</th>
 					<th>Volume do Produto</th>
-					<!-- <th>Imagem</th> -->
+					<th>Imagem</th>
 					<th>Editar</th>
 					<th>Remover</th>
 				</tr>
@@ -70,7 +70,9 @@
 					<td th:text="${produto.profundidade}"></td>
 					<td th:text="${produto.peso}"></td>
 					<td th:text="${produto.volume_produto}"></td>
-					<!-- <td th:text="${produto.image}"></td> -->
+					<th>
+						<img alt="Imagem" heigth="50%" width="50%" th:src="|/imagem/${produto.imagem}|"/>
+					</td>
 					
 					<td><a th:href="@{/editarProduto/{id}(id=${produto.id})}">Editar</a>
 					</td>

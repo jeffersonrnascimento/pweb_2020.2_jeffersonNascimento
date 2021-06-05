@@ -37,9 +37,9 @@ public class Produto implements Serializable{
 	private double preco;
 	private double volume_produto;
 	
-	/*@Lob
-	@Column(name="BOOK_IMAGE", nullable=false, columnDefinition="mediumblob")
-	private byte[] image;*/
+	@Lob
+	@Column(name = "imagem")
+	private byte[] imagem;
 	
 	
 	public long getId() {
@@ -97,12 +97,12 @@ public class Produto implements Serializable{
 		this.volume_produto = volume_produto;
 	}
 	
-	/*public byte[] getImage() {
-		return image;
+	public byte[] getImagem() {
+		return imagem;
 	}
-	public void setImage(byte[] image) {
-		this.image = image;
-	}*/
+	public void setImagem(byte[] imagem) {
+		this.imagem = imagem;
+	}
 	
 	
 

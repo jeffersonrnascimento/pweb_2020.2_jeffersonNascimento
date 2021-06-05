@@ -1,5 +1,6 @@
 package br.com.jeffersonrnascimento.agropopshop.controllers;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.jeffersonrnascimento.agropopshop.model.Produto;
@@ -45,8 +49,15 @@ public class ProdutoController {
 	}
 
 	@PostMapping("/adicionarProduto")
-	public String adicionarProduto(Produto p) {
-		this.produtoRepo.save(p);
+	public String adicionarProduto(Produto produto, @RequestParam("fileProduto") MultipartFile file) {
+		
+		try {
+			produto.setImagem(file.getBytes());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		this.produtoRepo.save(produto);
 		return "redirect:/listarProdutos";
 	}
 
@@ -70,8 +81,22 @@ public class ProdutoController {
 	}
 
 	@PostMapping("/editarProduto/{id}")
-	public ModelAndView editarProduto(@PathVariable("id") long id, Produto produto) {
+	public ModelAndView editarProduto(@PathVariable("id") long id, Produto produto, @RequestParam("fileProduto") MultipartFile file) {
+		
+		try {
+			produto.setImagem(file.getBytes());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		this.produtoRepo.save(produto);
 		return new ModelAndView("redirect:/listarProdutos");
+	}
+	
+	@GetMapping("/imagem/{id}")
+	@ResponseBody
+	public byte[] exibirImagem(@PathVariable("id") Integer id ) {
+		Produto produto = this.produtoRepo.getOne(id);
+		return produto.getImagem();
 	}
 }
