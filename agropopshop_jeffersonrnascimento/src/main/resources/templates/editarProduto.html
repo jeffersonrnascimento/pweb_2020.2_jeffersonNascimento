@@ -41,7 +41,7 @@
 		<form action="#" th:action="@{/editarProduto/{id}(id=${produto.id})}"
 			th:object="${produto}" th:method="POST">
 			
-			<div class="box">
+			<div id="box">
 			<p>
 				Nome do Produto *: <input type="text" placeholder="Nome do produto"
 					th:field="*{nomeProduto}" required />

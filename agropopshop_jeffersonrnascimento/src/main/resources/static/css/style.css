@@ -157,6 +157,21 @@ td {
 #myTable tr {
   /* Add a bottom border to all table rows */
   border-bottom: 1px solid #ddd;
+}
+
+#box {
+	border-radius: 20px;
+	margin: 0 auto;
+	width: 25%;
+	padding: 5%;
+	background-color: #ffffff;
+}
+
+#botao-whatsapp{
+	position:fixed;
+	bottom:20px;
+	right:30px;
+}
 
 /* Formulários */
 input[type=text], select {
@@ -189,12 +204,4 @@ input[type=submit]:hover {
 input[type=reset]:hover {
 	background-color: #45a049;
 	font-size: 16px;
-}
-
-.box {
-	border-radius: 20px;
-	margin: 0 auto;
-	width: 25%;
-	padding: 5%;
-	background-color: #ffffff;
 }
