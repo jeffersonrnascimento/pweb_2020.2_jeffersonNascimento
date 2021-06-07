@@ -23,6 +23,9 @@ public class ProdutoController {
 
 	@Autowired
 	private ProdutoRepository produtoRepo;
+	
+	private ModelAndView mva;
+
 
 	ProdutoController(ProdutoRepository produtoRepo) {
 		this.produtoRepo = produtoRepo;
@@ -51,12 +54,12 @@ public class ProdutoController {
 	@PostMapping("/adicionarProduto")
 	public String adicionarProduto(Produto produto, @RequestParam("fileProduto") MultipartFile file) {
 		
-		try {
+		/*try {
 			produto.setImagem(file.getBytes());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+		*/
 		this.produtoRepo.save(produto);
 		return "redirect:/listarProdutos";
 	}
@@ -95,8 +98,16 @@ public class ProdutoController {
 	
 	@GetMapping("/imagem/{id}")
 	@ResponseBody
-	public byte[] exibirImagem(@PathVariable("id") Integer id ) {
+	//No video foi usado Integer
+	public byte[] exibirImagem(@PathVariable("id") Long id ) {
 		Produto produto = this.produtoRepo.getOne(id);
 		return produto.getImagem();
+	}
+	
+	@PostMapping("**/pesquisarProduto")
+	public ModelAndView pesquisar(@RequestParam("nomePesquisa") String nomePesquisa) {
+		mva = new ModelAndView("/listarProdutos");
+		mva.addObject("produtos", produtoRepo.buscarProdutoPorNome(nomePesquisa));
+		return mva;
 	}
 }
